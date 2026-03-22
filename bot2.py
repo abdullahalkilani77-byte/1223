@@ -105,8 +105,10 @@ def main():
 
     print("✅ البوت شغال...")
 
-    loop = asyncio.get_event_loop()
-    loop.create_task(sender())
+    async def start_sender(app):
+        asyncio.create_task(sender())
+
+    app.post_init = start_sender
 
     app.run_polling()
 
