@@ -12,7 +12,7 @@ from telegram.ext import ApplicationBuilder, CallbackQueryHandler, MessageHandle
 
 API_ID = 37958812
 API_HASH = "6708b877322843a5fdfbece240f2f3c7"
-BOT_TOKEN = "8202025752:AAE3gqA5fXsvaIz9pzVXHv1ji3RbclFGsNs"
+BOT_TOKEN = "8692535421:AAH_VAe16zCTA3q-TdFxZXKHM3Af9Qz2ZmA"
 
 OWNER_ID = 6154260595
 
