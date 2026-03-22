@@ -34,7 +34,7 @@ def menu():
 async def sender():
     global running
 
-    await user_app.start()
+    await user_app.connect()  # 👈 التعديل هنا فقط
     print("✅ الحساب جاهز")
 
     while True:
