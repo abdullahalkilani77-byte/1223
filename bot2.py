@@ -96,7 +96,7 @@ async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
         mode = None
         await update.message.reply_text("✅ تم حفظ الايدي")
 
-async def main():
+def main():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(MessageHandler(filters.COMMAND, start))
@@ -105,10 +105,10 @@ async def main():
 
     print("✅ البوت شغال...")
 
-    # تشغيل المرسل بالخلفية
-    asyncio.create_task(sender())
+    loop = asyncio.get_event_loop()
+    loop.create_task(sender())
 
-    await app.run_polling()
+    app.run_polling()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
