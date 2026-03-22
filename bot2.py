@@ -1,4 +1,11 @@
 import asyncio
+
+# حل مشكلة Python 3.14
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+
 from pyrogram import Client
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CallbackQueryHandler, MessageHandler, filters, ContextTypes
@@ -89,7 +96,7 @@ async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
         mode = None
         await update.message.reply_text("✅ تم حفظ الايدي")
 
-def main():
+async def main():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(MessageHandler(filters.COMMAND, start))
@@ -98,10 +105,10 @@ def main():
 
     print("✅ البوت شغال...")
 
-    loop = asyncio.get_event_loop()
-    loop.create_task(sender())
+    # تشغيل المرسل بالخلفية
+    asyncio.create_task(sender())
 
-    app.run_polling()
+    await app.run_polling()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
